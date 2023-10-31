@@ -2,11 +2,11 @@ version: "3"
 
 services:
   db:
-    container_name: subsquid_db
+    container_name: giant_squid_db
     image: postgres:15
     environment:
       POSTGRES_DB: squid
       POSTGRES_PASSWORD: postgres
-    shm_size: 1gb
+    shm_size: 2gb
     ports:
       - "${DB_PORT}:5432"

@@ -1,4 +1,5 @@
 import {ProcessorConfig} from '../processorConfig'
+import api from "./metadata/hydradx/api";
 
 const config: ProcessorConfig = {
     chainName: 'hydradx',
@@ -6,6 +7,7 @@ const config: ProcessorConfig = {
     dataSource: {
         chain: 'wss://rpc.hydradx.cloud',
     },
+    api
 }
 
 export default config

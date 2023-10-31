@@ -1,4 +1,5 @@
 import {ProcessorConfig} from '../processorConfig'
+import api from "./metadata/statemint/api";
 
 const config: ProcessorConfig = {
     chainName: 'statemint',
@@ -6,6 +7,7 @@ const config: ProcessorConfig = {
     dataSource: {
         chain: 'wss://statemint-rpc.polkadot.io',
     },
+    api
 }
 
 export default config

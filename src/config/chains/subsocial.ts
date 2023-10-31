@@ -1,4 +1,5 @@
 import {ProcessorConfig} from '../processorConfig'
+import api from "./metadata/subsocial/api";
 
 const config: ProcessorConfig = {
     chainName: 'subsocial',
@@ -6,6 +7,7 @@ const config: ProcessorConfig = {
     dataSource: {
         chain: 'wss://para.f3joule.space',
     },
+    api
 }
 
 export default config

@@ -8,10 +8,8 @@ import {
     SubstrateBatchProcessor,
     SubstrateBatchProcessorFields,
 } from '@subsquid/substrate-processor'
-import {getChainConfig} from './config'
+import {CHAIN_CONFIG, getChainConfig} from './config'
 import {lookupArchive} from '@subsquid/archive-registry'
-
-const CHAIN_CONFIG = getChainConfig()
 
 export function tryLookupArchive(network: string) {
     try {

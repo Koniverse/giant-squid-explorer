@@ -1,4 +1,5 @@
 import {ProcessorConfig} from '../processorConfig'
+import api from "./metadata/khala/api";
 
 const config: ProcessorConfig = {
     chainName: 'khala',
@@ -6,6 +7,7 @@ const config: ProcessorConfig = {
     dataSource: {
         chain: 'wss://khala-api.phala.network/ws',
     },
+    api
 }
 
 export default config

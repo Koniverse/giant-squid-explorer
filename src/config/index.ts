@@ -35,8 +35,8 @@ export function getChainConfig(): ProcessorConfig {
       return require('./chains/moonriver').default
     case 'moonbeam':
       return require('./chains/moonbeam').default
-    case 'moonbase':
-      return require('./chains/moonbase').default
+    // case 'moonbase':
+    //   return require('./chains/moonbase').default
     case 'bifrost':
       return require('./chains/bifrost').default
     case 'phala':
@@ -47,8 +47,8 @@ export function getChainConfig(): ProcessorConfig {
       return require('./chains/gmordie').default
     case 'astar':
       return require('./chains/astar').default
-    case 'shibuya':
-      return require('./chains/shibuya').default
+    // case 'shibuya':
+    //   return require('./chains/shibuya').default
     case 'shiden':
       return require('./chains/shiden').default
     case 'calamari':
@@ -57,13 +57,15 @@ export function getChainConfig(): ProcessorConfig {
       return require('./chains/subsocial').default
     case 'efinity':
       return require('./chains/efinity').default
-    case 'rococo':
-      return require('./chains/rococo').default
-    case 'interlay':
-      return require('./chains/interlay').default
+    // case 'rococo':
+    //   return require('./chains/rococo').default
+    // case 'interlay':
+    //   return require('./chains/interlay').default
     case 'hydradx':
       return require('./chains/hydradx').default
     default:
       throw new Error(`Unsupported chain ${process.env.CHAIN}`)
   }
 }
+
+export const CHAIN_CONFIG = getChainConfig()

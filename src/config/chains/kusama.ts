@@ -1,4 +1,5 @@
 import {ProcessorConfig} from '../processorConfig'
+import api from "./metadata/kusama/api";
 
 const config: ProcessorConfig = {
     chainName: 'kusama',
@@ -6,6 +7,7 @@ const config: ProcessorConfig = {
     dataSource: {
         chain: 'wss://kusama-rpc.polkadot.io',
     },
+    api
 }
 
 export default config

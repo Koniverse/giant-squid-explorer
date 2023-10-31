@@ -104,3 +104,34 @@ type ItemsCounter @entity {
     level: CounterLevel! @index
     total: Int! @index
 }
+
+type Account @entity {
+    id: ID!
+    publicKey: String! @index
+    address: String! @index
+    sendTransfers: [NativeTransfer!] @derivedFrom(field: "from")
+    receiveTransfers: [NativeTransfer!] @derivedFrom(field: "to")
+    rewards: [StakingReward!] @derivedFrom(field: "account")
+}
+
+type NativeTransfer @entity {
+    id: ID!
+    blockNumber: Int! @index
+    timestamp: DateTime! @index
+    extrinsicHash: String @index
+    from: Account!
+    to: Account!
+    amount: BigInt! @index
+    success: Boolean!
+}
+
+type StakingReward @entity {
+    id: ID!
+    timestamp: DateTime!
+    blockNumber: Int! @index
+    extrinsicHash: String @index
+    account: Account!
+    amount: BigInt!
+    era: Int
+    validatorId: ID
+}

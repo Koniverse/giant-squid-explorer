@@ -5,4 +5,5 @@ export interface ProcessorConfig {
     prefix?: number | string
     dataSource: Parameters<SubstrateBatchProcessor<any>['setDataSource']>[0]
     blockRange?: Parameters<SubstrateBatchProcessor<any>['setBlockRange']>[0]
+    api: any
 }
