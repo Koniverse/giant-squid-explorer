@@ -2,7 +2,7 @@ import {Event, ProcessorContext} from "../processor";
 import {StoreWithCache} from "@belopash/typeorm-store";
 import * as model from "../model";
 import {saveNativeTransfer} from "./nativeTransfer";
-import {saveReward} from "./reward";
+import {saveStakingReward} from "./stakingReward";
 
 export async function saveEvent(ctx: ProcessorContext<StoreWithCache>, event: Event) {
     ctx._chain
@@ -25,14 +25,9 @@ export async function saveEvent(ctx: ProcessorContext<StoreWithCache>, event: Ev
     })
     await ctx.store.insert(entity)
 
-    switch (event.name) {
-        case 'Balances.Transfer':
-            await saveNativeTransfer(ctx, event);
-            break
-        case 'Staking.Reward':
-        case 'Staking.Rewarded':
-            await saveReward(ctx, event)
-    }
+    // Fetch data from event
+    await saveNativeTransfer(ctx, event);
+    // await saveStakingReward(ctx, event)
 
     block.eventsCount += 1
     await ctx.store.upsert(block)

@@ -2,11 +2,11 @@ import {Account} from "../model";
 import {ProcessorContext} from "../processor";
 import {StoreWithCache} from "@belopash/typeorm-store";
 import * as model from "../model";
-import {decodeAddress} from "../utils";
+import {decodeAddress, encodeAddress} from "../utils";
 
-export async function ensureAccount(ctx: ProcessorContext<StoreWithCache>, address: string) {
-  const publicKey = decodeAddress(address)
-  let account = await ctx.store.getOrFail(model.Account, publicKey)
+export async function ensureAccount(ctx: ProcessorContext<StoreWithCache>, publicKey: string) {
+  const address = encodeAddress(publicKey)
+  let account = await ctx.store.get(model.Account, publicKey)
 
   if (!account) {
     account = new Account({

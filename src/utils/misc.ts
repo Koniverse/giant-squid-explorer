@@ -8,19 +8,15 @@ import {CHAIN_CONFIG} from "../config";
 import {Event} from "@subsquid/substrate-processor/src/interfaces/data";
 
 
-export function encodeAddress(address: Uint8Array) {
-  if (CHAIN_CONFIG.api.prefix) {
-    return encode({
-      bytes: address,
-      prefix: CHAIN_CONFIG.api.prefix,
-    })
-  } else {
-    return toHex(address)
-  }
+export function encodeAddress(address: string) {
+  return encode({
+    bytes: address,
+    prefix: CHAIN_CONFIG.prefix,
+  })
 }
 
 export function decodeAddress(address: string) {
-  if (CHAIN_CONFIG.api.prefix) {
+  if (CHAIN_CONFIG.prefix) {
     return decode(address).bytes
   }
   else {

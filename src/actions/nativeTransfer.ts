@@ -4,8 +4,22 @@ import {CHAIN_CONFIG} from "../config";
 import {ensureAccount} from "./account";
 import {NativeTransfer} from "../model";
 
+export interface TransferEvent {
+    id: string
+    blockNumber: number
+    timestamp: Date
+    extrinsicHash?: string
+    success: boolean
+    from: string
+    to: string
+    amount: bigint
+    fee?: bigint
+}
+
 export async function saveNativeTransfer(ctx: ProcessorContext<StoreWithCache>, event: Event) {
-  const data = CHAIN_CONFIG.api.events.balances.Transfer.decode(ctx, event)
+  if (!CHAIN_CONFIG.eventDecoder?.nativeTransfer) return
+  const data = await CHAIN_CONFIG.eventDecoder.nativeTransfer(ctx, event)
+  if (!data) return
 
   const from = await ensureAccount(ctx, data.from);
   const to = await ensureAccount(ctx, data.to);
